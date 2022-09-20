@@ -18,9 +18,18 @@
                 3. Scan QR code with your phone.
             </p>
 
-            <button>Scan QR Code</button>
+            <!-- <button>Scan QR Code</button>
             <label for="imageFile">Scan QR Code</label>
-            <input title="scan" type="file" id="imageFile" accept="image/*" capture="environment" />
+            <input title="scan" type="file" id="imageFile" accept="image/*" capture="environment" /> -->
+
+            <form enctype="multipart/form-data" action="http://api.qrserver.com/v1/read-qr-code/" method="POST">
+                <!-- MAX_FILE_SIZE (maximum file size in bytes) must precede the file input field used to upload the QR code image -->
+                <input type="hidden" name="MAX_FILE_SIZE" value="1048576" />
+                <!-- The "name" of the input field has to be "file" as it is the name of the POST parameter -->
+                <label for="imageFile">Scan QR Code</label>
+                <input name="file" title="scan" type="file" id="imageFile" accept="image/*" capture="environment" />
+                <input type="submit" value="Read QR code" />
+            </form>
         </div>
         
     </body>
