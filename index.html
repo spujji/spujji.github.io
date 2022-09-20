@@ -9,6 +9,8 @@
         <script type="text/javascript">
             window.pxtSkipAnalyticsCookie = true;
         </script>
+        <script src="https://unpkg.com/html5-qrcode@2.0.9/dist/html5-qrcode.min.js"></script>
+
     </head>
     <body>
         <div class="header">
@@ -22,14 +24,16 @@
             <label for="imageFile">Scan QR Code</label>
             <input title="scan" type="file" id="imageFile" accept="image/*" capture="environment" /> -->
 
-            <form enctype="multipart/form-data" action="http://api.qrserver.com/v1/read-qr-code/" method="POST">
-                <!-- MAX_FILE_SIZE (maximum file size in bytes) must precede the file input field used to upload the QR code image -->
-                <input type="hidden" name="MAX_FILE_SIZE" value="1048576" />
-                <!-- The "name" of the input field has to be "file" as it is the name of the POST parameter -->
-                <label for="imageFile">Scan QR Code</label>
-                <input name="file" title="scan" type="file" id="imageFile" accept="image/*" capture="environment" />
-                <input type="submit" value="Read QR code" />
-            </form>
+            <div id="qr-reader" style="width: 600px"></div>
+
+            <script>
+                function onScanSuccess(decodedText, decodedResult) {
+                    console.log(`Code scanned = ${decodedText}`, decodedResult);
+                }
+                var html5QrcodeScanner = new Html5QrcodeScanner(
+                    "qr-reader", { fps: 10, qrbox: 250 });
+                html5QrcodeScanner.render(onScanSuccess);
+            </script>
         </div>
         
     </body>
