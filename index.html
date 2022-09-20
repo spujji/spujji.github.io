@@ -10,7 +10,6 @@
             window.pxtSkipAnalyticsCookie = true;
         </script>
         <script src="https://unpkg.com/html5-qrcode@2.0.9/dist/html5-qrcode.min.js"></script>
-
     </head>
     <body>
         <div class="header">
@@ -20,20 +19,33 @@
                 3. Scan QR code with your phone.
             </p>
 
-            <!-- <button>Scan QR Code</button>
-            <label for="imageFile">Scan QR Code</label>
-            <input title="scan" type="file" id="imageFile" accept="image/*" capture="environment" /> -->
-
-            <div id="qr-reader" style="width: 600px"></div>
+            <div class="openCamera">
+                <div id="qr-reader" style="width: 100%"></div>
+            </div>
+            
+            <!-- <button id="scan1" onClick="onScanSuccess">Scan Me!</button> -->
+            
 
             <script>
                 function onScanSuccess(decodedText, decodedResult) {
                     console.log(`Code scanned = ${decodedText}`, decodedResult);
+                    
+                    var kioskURL = document.URL.split("#")[1];
+                    console.log('kiosk url:', kioskURL);
+                    var gameID = decodedText.split("/");
+                    var actualID = gameID[gameID.length - 1];
+
+                    // { kioskCode: "", shareID: ""}
+                    var apiJson = { kioskCode: kioskURL, shareID: actualID};
+
+                    //TODO: Add API POST request here!
                 }
                 var html5QrcodeScanner = new Html5QrcodeScanner(
                     "qr-reader", { fps: 10, qrbox: 250 });
                 html5QrcodeScanner.render(onScanSuccess);
+
             </script>
+           
         </div>
         
     </body>

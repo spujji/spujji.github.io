@@ -1,0 +1,45 @@
+@font-face {
+    font-family: PressStart2P;
+    src: url(fonts/PressStart2P-Regular.ttf);
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+    background: radial-gradient(62.83% 55.51% at 50% 50%, rgba(19, 69, 90, 0.81) 0%, #13455A 100%);
+    font-family: PressStart2P;
+    color: white;
+}
+
+.header {
+    margin-left: 50px;
+}
+
+.openCamera { 
+    position: relative; 
+    /* height: 30px; 
+    width: 100%;  */
+}
+.openCamera > input[type="file"] { 
+    position: absolute; 
+    opacity: 0; 
+    top: 0; 
+    left: 0; 
+    right: 0; 
+    bottom: 0 
+}
+.openCamera > label { 
+    position: absolute; 
+    top: 0; 
+    right: 0; 
+    left: 0; 
+    bottom: 0; 
+    background-color: #666; 
+    color: #fff; 
+    line-height: 30px; 
+    text-align: center; 
+    cursor: pointer; 
+}
