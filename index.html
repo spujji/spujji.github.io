@@ -24,11 +24,12 @@
             </div>
 
             <script>
+                alert(0);
                 async function onScanSuccess(decodedText, decodedResult) {
                     // console.log(`Code scanned = ${decodedText}`, decodedResult);
                     
                     // var kioskCode = document.URL.split("#")[1];
-                    var kioskCode = "C9BE7E";
+                    var kioskCode = "5EE5DF";
                     // console.log('kiosk url:', kioskURL);
                     var gameURL = decodedText.split("/");
                     var shareId = gameURL[gameURL.length - 1];
@@ -38,7 +39,6 @@
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json'
-                            
                         },
                         body: {
                             "kioskCode": kioskCode,
@@ -46,15 +46,17 @@
                         },
                     });
 
-                    response.json().then(data => {
-                        alert(data);
-                        console.log(data);
-                    });
+                    // response.json().then(data => {
+                    //     console.log(data);
+                    // });
+                    const data = await response.json();
+                    console.log(data);
+                    alert(data);
 
                     window.location.href = "confirmation.html";
                 }
                 var html5QrcodeScanner = new Html5QrcodeScanner(
-                    "qr-reader", { fps: 10, qrbox: 250 });
+                    "qr-reader", { fps: 10, qrbox: 250, facingMode: "environment" });
                 html5QrcodeScanner.render(onScanSuccess);
 
             </script> 
