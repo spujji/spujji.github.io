@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  
+<head>
+    <title>QR Code Generator</title>
+</head>
+    <body>
+        <!-- the text box to enter a url -->
+        <input id="url" size="80" 
+            placeholder="Enter url" style="Width:20%"/>
+ 
+        <!-- the button to generate a QR code -->
+        <button type="button" class="btn btn-default" id="button">
+            Generate QR Code
+        </button>
+        
+        <!-- the url to QR code conversion logic -->
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script> 
+        <script>
+        $(function onClick () {
+            // on button click...
+            $('#button').click(function () {
+                var url = $('#url').val();
+                var QR_url = 'https://api.qrserver.com/v1/create-qr-code/?data=' + url + '&amp'; //& for parsing
+                $('#placeholder').attr('src', QR_url);
+            });
+          });
+        </script>
+    <div>
+      <!-- the image placeholder -->
+      <img id='placeholder' 
+            src="" 
+            max-width: 200px;
+            style="margin: 10px;"/>
+    </div>
+    </body>
+</html>
