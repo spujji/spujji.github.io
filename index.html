@@ -10,6 +10,7 @@
             window.pxtSkipAnalyticsCookie = true;
         </script>
         <script src="https://unpkg.com/html5-qrcode@2.0.9/dist/html5-qrcode.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     </head>
     <body>
         <div class="header">
@@ -29,7 +30,7 @@
                     // console.log(`Code scanned = ${decodedText}`, decodedResult);
                     
                     // var kioskCode = document.URL.split("#")[1];
-                    var kioskCode = "075700";
+                    var kioskCode = "11DBD1";
                     // console.log('kiosk url:', kioskURL);
                     var gameURL = decodedText.split("/");
                     var shareId = gameURL[gameURL.length - 1];
@@ -67,7 +68,6 @@
                 <button id="KioskCodeButton" type="button" class="btn btn-default">
                     Enter
                 </button>
-            
                 <script>
                     $(function onClick () {
                         // on kiosk code button click...
