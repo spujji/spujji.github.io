@@ -24,18 +24,32 @@
             </div>
 
             <script>
-                function onScanSuccess(decodedText, decodedResult) {
-                    console.log(`Code scanned = ${decodedText}`, decodedResult);
+                async function onScanSuccess(decodedText, decodedResult) {
+                    // console.log(`Code scanned = ${decodedText}`, decodedResult);
                     
-                    var kioskURL = document.URL.split("#")[1];
-                    console.log('kiosk url:', kioskURL);
-                    var gameID = decodedText.split("/");
-                    var actualID = gameID[gameID.length - 1];
-
-                    // { kioskCode: "", shareID: ""}
-                    var apiJson = { kioskCode: kioskURL, shareID: actualID};
+                    // var kioskCode = document.URL.split("#")[1];
+                    var kioskCode = "404BE8";
+                    // console.log('kiosk url:', kioskURL);
+                    var gameURL = decodedText.split("/");
+                    var shareId = gameURL[gameURL.length - 1];
 
                     //TODO: Add API POST request here!
+                    const response = await fetch("https://staging.pxt.io/api/kiosk/updatecode", {
+                        method: 'POST',
+                        headers: {
+                            'Accept': 'application/json',
+                            'Content-Type': 'application/json'
+                        },
+                        body: {
+                            "kioskCode": kioskCode,
+                            "shareId": shareId
+                        },
+                    });
+
+                    response.json().then(data => {
+                        console.log(data);
+                    });
+
                     window.location.href = "confirmation.html";
                 }
                 var html5QrcodeScanner = new Html5QrcodeScanner(
