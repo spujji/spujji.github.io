@@ -20,11 +20,8 @@
             </p>
 
             <div class="openCamera">
-                <div id="qr-reader" style="width: 100%"></div>
+                <div id="qr-reader" style="width: 80%"></div>
             </div>
-            
-            <!-- <button id="scan1" onClick="onScanSuccess">Scan Me!</button> -->
-            
 
             <script>
                 function onScanSuccess(decodedText, decodedResult) {
@@ -39,14 +36,13 @@
                     var apiJson = { kioskCode: kioskURL, shareID: actualID};
 
                     //TODO: Add API POST request here!
+                    window.location.href = "confirmation.html";
                 }
                 var html5QrcodeScanner = new Html5QrcodeScanner(
                     "qr-reader", { fps: 10, qrbox: 250 });
                 html5QrcodeScanner.render(onScanSuccess);
 
-            </script>
-           
+            </script> 
         </div>
-        
     </body>
 </html>
