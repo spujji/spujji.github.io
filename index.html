@@ -29,7 +29,7 @@
                     // console.log(`Code scanned = ${decodedText}`, decodedResult);
                     
                     // var kioskCode = document.URL.split("#")[1];
-                    var kioskCode = "5EE5DF";
+                    var kioskCode = "075700";
                     // console.log('kiosk url:', kioskURL);
                     var gameURL = decodedText.split("/");
                     var shareId = gameURL[gameURL.length - 1];
@@ -38,6 +38,7 @@
                     const response = await fetch("https://staging.pxt.io/api/kiosk/updatecode", {
                         method: 'POST',
                         headers: {
+                            'Accept': 'application/json',
                             'Content-Type': 'application/json'
                         },
                         body: {
