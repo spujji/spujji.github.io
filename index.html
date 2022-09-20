@@ -61,6 +61,22 @@
                 html5QrcodeScanner.render(onScanSuccess);
 
             </script> 
+            <br/>
+                <p>No Camera? Enter your 20-digit game code here: <br/> </p>
+                <input id="KioskCode" placeholder="Kiosk code" style="Width:30%"/>
+                <button id="KioskCodeButton" type="button" class="btn btn-default">
+                    Enter
+                </button>
+            
+                <script>
+                    $(function onClick () {
+                        // on kiosk code button click...
+                        $('#KioskCodeButton').click(function () {
+                            var kioskCode = $('#KioskCode').val();
+                            alert(kioskCode);
+                        });
+                      });
+                </script>
         </div>
     </body>
 </html>
