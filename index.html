@@ -25,13 +25,9 @@
             </div>
 
             <script>
-                alert(0);
                 async function onScanSuccess(decodedText, decodedResult) {
-                    // console.log(`Code scanned = ${decodedText}`, decodedResult);
                     
-                    // var kioskCode = document.URL.split("#")[1];
-                    var kioskCode = "69011D";
-                    // console.log('kiosk url:', kioskURL);
+                    var kioskCode = document.URL.split("#")[1];
                     var gameURL = decodedText.split("/");
                     var shareId = gameURL[gameURL.length - 1];
 
@@ -53,7 +49,6 @@
                     // });
                     const data = await response.json();
                     console.log(data);
-                    alert(data);
 
                     window.location.href = "confirmation.html";
                 }
