@@ -13,8 +13,15 @@
     </head>
     <body>
         <div class="header">
-            <h1>Hurray!!</h1>
-            <p>Your game has been uploaded!</p>
+            <h1>Hurray!</h1>
+            <h2 id="kioskID">Kiosk ID: </h2>
+            <script>
+                var para = new URLSearchParams(window.location.search);
+                var pass = para.get("kiosk");
+                document.getElementById("kioskID").innerHTML = "Kiosk ID: " + pass;
+            </script>
+            <p>Your game has been uploaded to Kiosk!</p>
+            
             <p>1. Return to Main menu on Kiosk <br/> <br/>
                 2. Find and play your game! <br/> <br/>
             </p>

@@ -14,7 +14,11 @@
     </head>
     <body>
         <div class="header">
-            <h1>Kiosk ID</h1>
+            <h1 id="kioskID">Kiosk ID</h1>
+            <script>
+                var kioskCode = document.URL.split("#")[1];
+                document.getElementById("kioskID").innerHTML = "Kiosk ID: " + kioskCode;
+            </script>
             <p>1. Open up game on your computer <br/> <br/>
                 2. Press share button <br/> <br/>
                 3. Scan QR code with your phone.
@@ -46,7 +50,9 @@
 
                     const data = await response.json();
 
-                    window.location.href = "confirmation.html";
+                    var para = new URLSearchParams();
+                    para.append("kiosk", kioskCode);
+                    window.location.href = "confirmation.html?" + para.toString();
                 }
                 var html5QrcodeScanner = new Html5QrcodeScanner(
                     "qr-reader", { fps: 10, qrbox: 250, facingMode: "environment" });
@@ -54,17 +60,36 @@
 
             </script> 
             <br/>
+                <!-- Handle if you add it to the Kiosk -->
                 <p>No Camera? Enter your 20-digit game code here: <br/> </p>
-                <input id="KioskCode" placeholder="Kiosk code" style="Width:30%"/>
-                <button id="KioskCodeButton" type="button" class="btn btn-default">
+                <input id="GameCode" placeholder="Game code" style="Width:30%"/>
+                <button id="GameCodeButton" type="button" class="btn btn-default">
                     Enter
                 </button>
                 <script>
                     $(function onClick () {
-                        // on kiosk code button click...
-                        $('#KioskCodeButton').click(function () {
-                            var kioskCode = $('#KioskCode').val();
-                            alert(kioskCode);
+                        // on game code button click...
+                        $('#GameCodeButton').click(async function () {
+                            var kioskCode = document.URL.split("#")[1];
+                            var shareId = $('#GameCode').val();
+
+                            const response = await fetch("https://staging.pxt.io/api/kiosk/updatecode", {
+                                method: 'POST',
+                                headers: {
+                                    'Accept': 'application/json',
+                                    'Content-Type': 'application/json'
+                                },
+                                body: JSON.stringify({
+                                    "kioskCode": kioskCode,
+                                    "shareId": shareId
+                                }),
+                            });
+
+                            const data = await response.json();
+
+                            var para = new URLSearchParams();
+                            para.append("kiosk", kioskCode);
+                            window.location.href = "confirmation.html?" + para.toString()
                         });
                       });
                 </script>
